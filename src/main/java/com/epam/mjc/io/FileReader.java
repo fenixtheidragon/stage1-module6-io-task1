@@ -2,10 +2,7 @@ package com.epam.mjc.io;
 
 import java.io.*;
 import java.util.logging.Logger;
-
-
 public class FileReader {
-
     public Profile getDataFromFile(File file) {
         Logger log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
         Profile profile = null;
