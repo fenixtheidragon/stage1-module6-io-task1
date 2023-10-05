@@ -12,6 +12,7 @@ public class Profile {
     public Profile() {
 
     }
+
     public Profile(String name, Integer age, String email, Long phone) {
         this.name = name;
         this.age = age;
@@ -72,9 +73,9 @@ public class Profile {
         }
         Profile profile = (Profile) o;
         return getName().equals(profile.getName())
-                && getAge().equals(profile.getAge())
-                && getEmail().equals(profile.getEmail())
-                && getPhone().equals(profile.getPhone());
+               && getAge().equals(profile.getAge())
+               && getEmail().equals(profile.getEmail())
+               && getPhone().equals(profile.getPhone());
     }
 
     @Override
