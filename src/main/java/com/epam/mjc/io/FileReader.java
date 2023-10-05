@@ -8,24 +8,16 @@ public class FileReader {
 
     public Profile getDataFromFile(File file) {
         Logger log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-        Profile profile = new Profile();
-        try (FileInputStream fileInputStream = new FileInputStream(file)){
-            int c;
+        Profile profile = null;
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
             StringBuilder textSB = new StringBuilder();
-            while ((c = fileInputStream.read()) != -1) {
-                char ch = (char) c;
-                String cha = String.valueOf(ch);
-                if (cha.equals("\n")) {
-                    cha = " ";
-                }
-                textSB.append(cha);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                textSB.append(line).append(" ");
             }
             String text = textSB.toString();
             String[] parts = text.split(" ");
-            profile.setName(parts[1]);
-            profile.setAge(Integer.valueOf(parts[3]));
-            profile.setEmail(parts[5]);
-            profile.setPhone(Long.valueOf(parts[7]));
+            profile = new Profile(parts[1], Integer.valueOf(parts[3]), parts[5], Long.valueOf(parts[7]));
         } catch (IOException e) {
             log.info(e.toString());
         }
